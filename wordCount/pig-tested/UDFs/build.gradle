@@ -1,0 +1,39 @@
+description = 'UDFs'
+
+apply plugin: 'groovy'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile('joda-time:joda-time:2.9.9',
+            'org.apache.pig:pig:0.12.0',
+            'org.apache.hadoop:hadoop-core:1.2.1'
+    )
+
+    testCompile(
+            'cglib:cglib-nodep:3.2.5',
+            'org.hamcrest:java-hamcrest:2.0.0.0'
+    )
+
+    testRuntime 'com.athaydes:spock-reports:1.2.13'
+}
+
+task testJar(type: Jar) {
+    from sourceSets.test.output
+    classifier = 'tests'
+}
+
+configurations {
+    tests
+}
+
+artifacts {
+    tests testJar
+}
+
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+    outputs.upToDateWhen { false }
+}

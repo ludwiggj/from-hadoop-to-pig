@@ -1,0 +1,3 @@
+This is a hadoop post
+Hadoop is a bigdata technology this is a known fact
+A database stores records

@@ -168,7 +168,7 @@ grunt>
 
 Pig can load data from a hadoop cluster or a local file. See [Difference between PIG local and mapreduce mode](https://stackoverflow.com/questions/11669394/difference-between-pig-local-and-mapreduce-mode) for futher details. Therefore Pig could load the data from the HDFS instance set up previously. However, in this case we'll run pig in local mode and load the same data from a local file.
 
-In local mode, the [LOAD operator](https://pig.apache.org/docs/r0.16.0/basic.html#load) can load data from a [text file](../input/example.txt).
+In local mode, the [LOAD operator](https://pig.apache.org/docs/r0.16.0/basic.html#load) can load data from a [text file](wordCount/input/example.txt).
 
 ```
 data = LOAD '../input/example.txt' AS (line:Chararray);
@@ -411,7 +411,7 @@ cd ..
 jar -cf myudfs.jar myudfs/*.class
 ```
 
-The UDF can then be used in a pig script. Here is the [wordcountUpper.pig script](wordCount/pig/wordcountUpper.pig):
+The UDF can then be used in a pig script. Here is the [wordcountUpper.pig](wordCount/pig/wordcountUpper.pig) script: 
 
 ```
 // Include the jar file
@@ -460,7 +460,7 @@ Key files:
 
 | File                                                                                                                | Description                         |
 | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [Upper.java](wordCount/pig-tested/UDFs/src/main/java/myudfs/Upper.java)                                             | UDF to convert string to upper case |
+| [Upper.java](wordCount/pig-tested/UDFs/src/main/java/com/examples/pig/udf/Upper.java)                               | UDF to convert string to upper case |
 | [UpperTest.groovy](wordCount/pig-tested/UDFs/src/test/groovy/com/examples/pig/udf/UpperTest.groovy)                 | UDF unit test                       |
 | [wordcountUpper.pig](wordCount/pig-tested/core/src/main/resources/wordcountUpper.pig)                               | Pig script                          | 
 | [WordCountTest.groovy](wordCount/pig-tested/core/src/integration-test/groovy/com/examples/pig/WordCountTest.groovy) | Pig integration test using PigUnit  |
